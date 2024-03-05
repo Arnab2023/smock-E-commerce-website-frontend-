@@ -19,10 +19,10 @@ function Navbar() {
     <>
       {/*---------------------------------------------- navbar --------------------------------------------*/}
 
-      <header className=" h-[70px] sticky top-0 z-20 bg-white shadow-md  hover:shadow-lg">
+      <header className="h-[70px] sticky top-0 z-20 bg-white shadow-md  hover:shadow-lg">
         <nav className="flex flex-row w-[100%]  h-[70px] ">
-          <div className=" w-40 h-40 p-5">
-            <img src={logo} alt="logo" className="" />
+          <div className="logo">
+            <img src={logo} alt="logo"/>
           </div>
 
           <div className="">
@@ -84,7 +84,7 @@ function Navbar() {
               </li>
               <li
                 className="hover:text-gray-500 text-[12px] flex flex-col cursor-pointer"
-                onClick={navigate("/cart")}
+                onClick={(e) => navigate("/cart")}
               >
                 <ShoppingCartOutlinedIcon />
                 Cart

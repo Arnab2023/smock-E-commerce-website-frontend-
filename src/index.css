@@ -1,3 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 1200px;
+    max-width: 1200px;
+    height: 500px;
+    position: relative;
+    margin: 2.5rem auto;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.banner {
+    position: relative;
+    min-width: 1200px;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.hero div h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.c-0 {
+    animation: carousel infinite 10s;
+}
+
+.logo {
+    margin: 15px 7px;
+    height: 100%;
+}
+
+.logo img {
+    height: 60%;
+}
+
+.cursor-pointer {
+    align-items: center !important;
+}
+
+@keyframes carousel {
+    0% {
+        margin-left: 0px;
+    }
+    20% {
+        margin-left: -1200px;
+    }
+    40% {
+        margin-left: -2400px;
+    }
+    60% {
+        margin-left: -3600px;
+    }
+    80% {
+        margin-left: -4800px;
+    }
+    100% {
+        margin-left: 0px;
+    }
+}

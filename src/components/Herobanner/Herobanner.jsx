@@ -2,6 +2,7 @@
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useState, useEffect } from "react";
+import { Carousel } from "react-responsive-carousel";
 
 function Herobanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,25 +52,18 @@ function Herobanner() {
     },
   ];
   return (
-    <div className="max-w-[1400px] lg:h-[700px]  max-sm:h-[380px] w-full m-auto py-10 px-4 relative group  ">
-      <div
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className=" relative w-full h-full rounded-2xl bg-center bg-cover  "
-      >
-        <div className="flex flex-col items-center justify-center w-full absolute m-auto top-[50%] text-white z-10">
-          <h1 className=" heading text-4xl font-bold  ">New Collection</h1>
-          <p className=" heading text-lg text-center ">Get your new style</p>
-        </div>
-      </div>
-      {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-3 text-white cursor-pointer">
-        <ArrowBackIosIcon onClick={prevSlide} />
-      </div>
-      {/* Right Arrow */}
-
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-3 text-white cursor-pointer">
-        <ArrowForwardIosIcon onClick={nextSlide} />
-      </div>
+    <div className="hero">
+      {
+        slides.map((s, i) => {
+          return <div 
+          key={s.url}
+          style={{ backgroundImage: `url(${s.url})`}}
+          className={`banner c-${i}`}
+          >
+            <h1>New Collection</h1>
+          </div>;
+        })
+      }
     </div>
   );
 }
