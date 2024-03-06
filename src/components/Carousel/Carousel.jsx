@@ -5,63 +5,40 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useRef } from "react";
 
 const Carousel = () => {
-  const carouselContainer = useRef();
-  const [isMouse, setIsMouse] = useState(false);
-
-  const navigation = (dir) => {
-    const container = carouselContainer.current;
-
-    const scrollAmount =
-      dir === "left"
-        ? container.scrollLeft - (container.offsetWidth + 20)
-        : container.scrollLeft + (container.offsetWidth + 20);
-
-    container.scrollTo({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  const [mar, setMar] = useState();
 
   useEffect(() => {
-    console.log(isMouse);
-    let intervalId;
-    if (isMouse === false) {
-      intervalId = setInterval(() => {
-        const container = carouselContainer.current;
+    setMar(0);
+  }, []);
 
-        console.log(container.scrollWidth);
-
-        const scrollAmount =
-          container.scrollLeft + (container.offsetWidth + 20) <=
-          container.scrollWidth
-            ? container.scrollLeft + (container.offsetWidth + 20)
-            : 0;
-        container.scrollTo({
-          left: scrollAmount,
-          behavior: "smooth",
-        });
-      }, 5000);
-      return () => clearInterval(intervalId);
+  const left = () => {
+    if(mar >= -640){
+      for(let i = 0; i <= 320; i++){
+        setTimeout(() => {
+          setMar(mar-i);
+        }, 1)
+      }
     }
-  }, [isMouse]);
+  }
+
+  const right = () => {
+    if(mar <= -320){
+      for(let i = 0; i <= 320; i++){
+        setTimeout(() => {
+          setMar(mar+i);
+        }, 1);
+      }
+    }
+  }
 
   return (
     <div className="Carousel-container ">
       <div className="title-text  text-black px-[140px] font-bold mt-[50px] text-[40px]">
         Trending this week
       </div>
-      <div className="Carousel relative ">
-        <div
-          className="carousel-items flex  mx-20 my-10 width-[400px] max-sm:mx-10 overflow-x-hidden px-5 "
-          onMouseEnter={() => {
-            setIsMouse(true);
-          }}
-          onMouseLeave={() => {
-            setIsMouse(false);
-          }}
-          ref={carouselContainer}
-        >
-          <div className="carousel-item h-[300px] min-w-[250px] border-2  border-gray-400  mx-10 max-sm:h-[250px] max-sm:w-[200px]  flex flex-col  shadow-lg rounded-md">
+      <div className="Carousel relative">
+        <div className="carousel-items flex  mx-20 my-10 width-[400px] max-sm:mx-10 overflow-x-hidden">
+          <div className="carousel-item h-[300px] min-w-[250px] border-2  border-gray-400  mx-10 max-sm:h-[250px] max-sm:w-[200px]  flex flex-col  shadow-lg rounded-md" style={{ marginLeft: `${mar}px`}}>
             <div className="img ">
               <img
                 src="https://www.biancajeswant.com/cdn/shop/files/7_ff496133-bdf0-4ee6-af6a-4963a2c51465.jpg?v=1695194728"
@@ -134,16 +111,10 @@ const Carousel = () => {
             </div>
           </div>
         </div>
-        <div
-          className="absolute top-[135px] right-10 z-1 hover:text-purple-700 cursor-pointer"
-          onClick={() => navigation("right")}
-        >
+        <div className="absolute top-[135px] right-10 z-1 hover:text-purple-700 cursor-pointer" onClick={left}>
           <ArrowForwardIosIcon />
         </div>
-        <div
-          className="absolute top-[135px] left-10 z-1 hover:text-purple-700 cursor-pointer"
-          onClick={() => navigation("left")}
-        >
+        <div className="absolute top-[135px] left-10 z-1 hover:text-purple-700 cursor-pointer" onClick={right}>
           <ArrowBackIosIcon />
         </div>
       </div>
